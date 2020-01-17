@@ -1,0 +1,9 @@
+[site]
+HOST_URL=
+baseUri=/
+
+[db]
+host=api-db
+username=user
+password=secret
+dbname=api_test
