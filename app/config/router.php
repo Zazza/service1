@@ -9,4 +9,11 @@ $router->addPost(
     ]
 );
 
+$router->addPost(
+    '/getFromAssign',
+    [
+        'action' => 'getFromAssign'
+    ]
+);
+
 return $router;

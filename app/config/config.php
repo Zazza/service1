@@ -9,7 +9,9 @@ defined('APP_PATH') || define('APP_PATH', BASE_PATH . '/app');
 return new \Phalcon\Config([
     'application' => [
         'controllersDir' => __DIR__ . '/../controllers/',
-        //'srcDir'     => APP_PATH . '/src/Service/',
-        'vendorDir'      => BASE_PATH . '/vendor/',
+        'vendorDir' => BASE_PATH . '/vendor/',
+        'viewsDir' => __DIR__ . '/../views/',
+        'SrcDir' => __DIR__ . '/../src/',
+        'cacheDir' => BASE_PATH . '/var/cache/',
     ]
 ]);

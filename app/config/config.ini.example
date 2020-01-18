@@ -1,9 +1,5 @@
-[site]
-HOST_URL=
-baseUri=/
+[client]
+url=http://example.com/api/
 
-[db]
-host=api-db
-username=user
-password=secret
-dbname=api
+[server]
+url=http://service2.local

@@ -1,6 +1,7 @@
 {
     "require": {
-        "phalcon/incubator": "v3.4.x"
+        "phalcon/incubator": "v3.4.x",
+        "datto/json-rpc": "^6.0"
     },
     "require-dev": {
         "phpunit/phpunit": "8.4.2"

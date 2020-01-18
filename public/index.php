@@ -11,6 +11,8 @@ try {
      * Read the configuration
      */
     $config = include __DIR__ . "/../app/config/config.php";
+    $configS = new \Phalcon\Config\Adapter\Ini(__DIR__."/../app/config/config.ini");
+    $config->merge($configS);
 
     /**
      * The FactoryDefault Dependency Injector automatically registers

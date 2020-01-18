@@ -1,8 +1,8 @@
 <?php
 
 use Phalcon\Mvc\Url as UrlResolver;
-use Phalcon\Mvc\Model\Metadata\Memory as MetaDataAdapter;
 use Phalcon\Mvc\Dispatcher;
+use Phalcon\Mvc\View;
 
 $di->setShared('config', $config);
 
@@ -35,12 +35,25 @@ $di->set('dispatcher', function () use ($di) {
     return $dispatcher;
 });
 
-$di->set(
-    "view",
-    function () {
-        $view = new \Phalcon\Mvc\View();
-        $view->setViewsDir("../apps/views/");
-        return $view;
-    }
-);
+$di->setShared('view', function () use ($config) {
+    $view = new View();
+    $view
+        ->setViewsDir($config->application->viewsDir)
+        ->setLayoutsDir($config->application->viewsDir)
+        ->setPartialsDir($config->application->viewsDir);
+    $view->registerEngines(array(
+        '.volt' => function ($view, $di) use ($config) {
+            $volt = new Phalcon\Mvc\View\Engine\Volt($view, $di);
+            $volt->setOptions(array(
+                'compiledPath' => $config->application->cacheDir,
+                'compiledSeparator' => '_',
+                'compileAlways' => true
+            ));
 
+            return $volt;
+        },
+    ));
+    $view->setRenderLevel(View::LEVEL_ACTION_VIEW);
+
+    return $view;
+});
